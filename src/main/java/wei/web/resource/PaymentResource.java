@@ -25,7 +25,8 @@ public class PaymentResource {
     }
 
     @PostMapping("/payments")
-    public void createOrder(@RequestBody Payment payment) {
+    public Mono<Void> createOrder(@RequestBody Payment payment) {
         logger.info("Have created payment for {}", payment.getMethod());
+        return Mono.empty();
     }
 }

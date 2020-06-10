@@ -9,12 +9,12 @@ spec:
   ports:
     - name: http
       protocol: TCP
-      port: 8080
-      targetPort: 80
-    - name: https
-      protocol: TCP
-      port: 8443
-      targetPort: 443
+      port: 8000
+      targetPort: 8000
+#    - name: https
+#      protocol: TCP
+#      port: 8443
+#      targetPort: 443
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -30,25 +30,27 @@ spec:
       labels:
         app: payment-service
     spec:
-      volumes:
-        - name: nginx-config-volume
-          configMap:
-            name: nginx-proxy-config-map
-        - name: nginx-secret-volume
-          secret:
-            secretName: nginx-proxy-secret
+#      volumes:
+#        - name: nginx-config-volume
+#          configMap:
+#            name: nginx-proxy-config-map
+#        - name: nginx-secret-volume
+#          secret:
+#            secretName: nginx-proxy-secret
       containers:
         - name: payment-service
           image: payment-service:latest
           imagePullPolicy: Never
-        - name: nginx
-          image: nginx:alpine
           ports:
-            - containerPort: 80
-            - containerPort: 443
-          volumeMounts:
-            - name: nginx-config-volume
-              mountPath: /etc/nginx/nginx.conf
-              subPath: nginx.conf
-            - name: nginx-secret-volume
-              mountPath: /etc/nginx/ssl
+            - containerPort: 8000
+#        - name: nginx
+#          image: nginx:alpine
+#          ports:
+#            - containerPort: 80
+#            - containerPort: 443
+#          volumeMounts:
+#            - name: nginx-config-volume
+#              mountPath: /etc/nginx/nginx.conf
+#              subPath: nginx.conf
+#            - name: nginx-secret-volume
+#              mountPath: /etc/nginx/ssl

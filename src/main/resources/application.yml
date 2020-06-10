@@ -6,4 +6,4 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: https://auth-svc-service/authorization-service/.well-known/jwks.json
+          jwk-set-uri: http://auth-svc-service:8000/authorization-service/.well-known/jwks.json
