@@ -7,5 +7,3 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: http://auth-svc-service:8000/authorization-service/.well-known/jwks.json
-
-logging.file: /app.log
